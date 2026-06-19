@@ -6,10 +6,11 @@ const wordpressUrl = process.env.WORDPRESS_URL;
 const nextConfig: NextConfig = {
   output: "standalone",
   images: {
+    unoptimized: process.env.NODE_ENV === "development" || wordpressHostname === "localhost",
     remotePatterns: wordpressHostname
       ? [
           {
-            protocol: "https",
+            protocol: "http",
             hostname: wordpressHostname,
             port: "",
             pathname: "/**",
